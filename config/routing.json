@@ -1,0 +1,8 @@
+{
+  "name": {
+    "method": "method",
+    "url": "/url.html",
+    "controller": "ControllerName",
+    "action": "ActionName"
+  }
+}

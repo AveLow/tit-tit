@@ -1,0 +1,22 @@
+{
+  "settings": {
+    "displayErrorDetails": true,
+    "db": {
+      "host": "localhost",
+      "name": "local",
+      "login": "root",
+      "password": "root"
+    },
+    "twig": {
+      "template-path": "/src",
+      "cache": false
+    }
+  },
+
+  "dependencyContainer":{
+    "name": {
+      "path": "path\\to\\class",
+      "injections": ["name", "of", "injection"]
+    }
+  }
+}

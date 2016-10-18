@@ -1,0 +1,21 @@
+{
+  "name": "Avelow/tit-tit",
+  "description": "Tit framework library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexis Merceron",
+      "email": "merceron.alexis.dev@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "slim/slim": "^3.0",
+    "slim/twig-view": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tit\\lib\\": "lib"
+    }
+  }
+}
