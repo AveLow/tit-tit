@@ -2,6 +2,7 @@
 namespace Tit\lib\Form\Fields;
 
 use Tit\lib\Form\Field;
+use Carbon\Carbon;
 
 /**
  * Class DateType
@@ -25,6 +26,12 @@ class DateField extends Field
     protected $max;
 
     /**
+     * Format to transform the value as Carbon object.
+     * @var string
+     */
+    protected $format;
+
+    /**
      * Set the max date.
      * @param string $max
      * @return DateField
@@ -45,6 +52,16 @@ class DateField extends Field
     }
 
     /**
+     * Set the format for the Carbon objet.
+     * @param string $format
+     * @return DateField
+     */
+    public function setFormat(string $format): DateField{
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
      * Getter
      * @return string
      */
@@ -58,5 +75,33 @@ class DateField extends Field
      */
     public function min(): string{
         return $this->min();
+    }
+
+    /**
+     * Getter
+     * @return string
+     */
+    public function format(): string{
+        return $this->format;
+    }
+
+    /**
+     * Return the date in a Carbon object
+     *
+     * @return Carbon
+     */
+    public function getDate(): Carbon{
+        return Carbon::createFromFormat($this->format, $this->value);
+    }
+
+    /**
+     * Set the value from a Carbon object.
+     *
+     * @param Carbon $date
+     * @return DateField
+     */
+    public function setDate(Carbon $date): DateField{
+        $this->value = $date->toDateString();
+        return $this;
     }
 }
