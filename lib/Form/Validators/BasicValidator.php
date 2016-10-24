@@ -1,8 +1,10 @@
 <?php
 namespace Tit\lib\Form\Validators;
 
+use Carbon\Carbon;
 use Tit\lib\AppComponent;
 use Tit\lib\Form\Field;
+use Tit\lib\Form\Fields\CheckField;
 use Tit\lib\Form\Fields\DateField;
 use Tit\lib\Form\Fields\NumberField;
 use Tit\lib\Form\Fields\TextField;
@@ -147,5 +149,31 @@ class BasicValidator extends AppComponent{
         $maxDate =  Carbon::createFromFormat($field->format(), $field->min());
 
         return $maxDate->gte($date);
+    }
+
+    /**
+     * CheckField Validator
+     * Return true if the box is checked.
+     *
+     * @param CheckField $field
+     * @return bool
+     */
+    public static function isChecked(CheckField $field): bool{
+        return $field->isChecked();
+    }
+
+    /**
+     * CheckFieldValidator
+     * Return true if at least one field is checked.
+     *
+     * @param array $fields
+     * @return bool
+     */
+    public static function atLeastOneChecked(array $fields):bool {
+        foreach ($fields as $field){
+            if ($field->isChecked())
+                return true;
+        }
+        return false;
     }
 }
