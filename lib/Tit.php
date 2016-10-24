@@ -49,7 +49,7 @@ class Tit{
      * @return array
      */
     private function getConfig(): array{
-        $json = file_get_contents(dirname(__DIR__)."/config/config.json");
+        $json = file_get_contents(dirname(__DIR__, 4)."/config/config.json");
 
         return json_decode($json, true);
     }
@@ -88,9 +88,9 @@ class Tit{
             $config = $c['settings']['twig'];
 
             if ($config['cache'] != false)
-                $twig = new Twig(dirname(__DIR__).$config['template-path'], ['cache' => __DIR__.$config['cache']]);
+                $twig = new Twig(dirname(__DIR__, 4).$config['template-path'], ['cache' => __DIR__.$config['cache']]);
             else
-                $twig = new Twig(dirname(__DIR__).$config['template-path'], ['cache' => false]);
+                $twig = new Twig(dirname(__DIR__, 4).$config['template-path'], ['cache' => false]);
 
             $twig->addExtension(new TwigExtension(
                 $c->get('router'),
