@@ -20,7 +20,7 @@ class Router extends AppComponent{
 
     public function loadRoutes(){
     // For php7.1 public function loadRoutes(): void{
-        $json = file_get_contents(dirname(__DIR__, 2)."/config/routing.json");
+        $json = file_get_contents(dirname(__DIR__, 5)."/config/routing.json");
         $routesArray = json_decode($json, true);
 
         foreach ((array) $routesArray as $name => $r){
