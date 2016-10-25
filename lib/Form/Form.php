@@ -15,14 +15,14 @@ class Form{
     /**
      * Fields of the form.
      * Array of fields.
-     * @var array
+     * @var Field[]
      */
     protected $fields;
 
     /**
      * Messages of the form.
      * It's an associative array.
-     * @var array
+     * @var string[]
      */
     protected $messages;
 
@@ -103,7 +103,7 @@ class Form{
 
     /**
      * Getter
-     * @return array
+     * @return Field[]
      */
     public function fields(){ return $this->fields; }
     // For php7.1 public function fields(): array{ return $this->fields; }
@@ -165,7 +165,7 @@ class Form{
 
     /**
      * Getter
-     * @return array
+     * @return string[]
      */
     public function messages(){ return $this->messages; }
     // For php7.1 public function messages(): array{ return $this->messages; }
