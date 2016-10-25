@@ -56,8 +56,9 @@ abstract class Field{
      * Set value to null.
      * @return Field $this
      */
-    public function unsetValue(): Field{
-        $this->value = null;
+    public function unsetValue(){
+    // For php7.1 public function unsetValue(): Field{
+            $this->value = null;
         return $this;
     }
 
@@ -66,8 +67,9 @@ abstract class Field{
      * @param string $value
      * @return Field
      */
-    public function fill(string $value): Field{
-        $this->setValue($value);
+    public function fill(string $value){
+    // FOr php7.1 public function fill(string $value): Field{
+            $this->setValue($value);
         return $this;
     }
 
@@ -76,8 +78,9 @@ abstract class Field{
      * @param string $value
      * @return Field $this
      */
-    public function setValue(string $value): Field{
-        $this->value = $value;
+    public function setValue(string $value){
+    // For php7.1 public function setValue(string $value): Field{
+            $this->value = $value;
         return $this;
     }
 
@@ -86,8 +89,9 @@ abstract class Field{
      * @param string $name
      * @return Field $this
      */
-    public function setName(string $name): Field{
-        $this->name = $name;
+    public function setName(string $name){
+    // For php7.1 public function setName(string $name): Field{
+            $this->name = $name;
         return $this;
     }
 
@@ -96,8 +100,9 @@ abstract class Field{
      * @param string $name
      * @return Field $this
      */
-    public function setRealName(string $name): Field{
-        $this->realName = $name;
+    public function setRealName(string $name){
+    // For php7.1 public function setRealName(string $name): Field{
+            $this->realName = $name;
         return $this;
     }
 
@@ -106,8 +111,9 @@ abstract class Field{
      * @param string $label
      * @return Field $this
      */
-    public function setLabel(string $label): Field{
-        $this->label = $label;
+    public function setLabel(string $label){
+    // For php7.1 public function setLabel(string $label): Field{
+            $this->label = $label;
         return $this;
     }
 
@@ -116,8 +122,9 @@ abstract class Field{
      * @param bool $required
      * @return Field
      */
-    public function setIsRequired(bool $required): Field{
-        $this->isRequired = $required;
+    public function setIsRequired(bool $required){
+    // For php7.1 public function setIsRequired(bool $required): Field{
+            $this->isRequired = $required;
         return $this;
     }
 
@@ -125,30 +132,35 @@ abstract class Field{
      * Getter
      * @return string
      */
-    public function name(): string{ return $this->name; }
+    public function name(){ return $this->name; }
+    // For php7.1 public function name(): string{ return $this->name; }
 
     /**
      * Getter
      * Return realName of name if realName is null.
      * @return string
      */
-    public function realName(): string{ return $this->realName ?? $this->name; }
+    public function realName(){ return $this->realName ?? $this->name; }
+    // For php7.1 public function realName(): string{ return $this->realName ?? $this->name; }
 
     /**
      * Getter
      * @return string
      */
-    public function value(): string{ return $this->value; }
+    public function value(){ return $this->value; }
+    // For php7.1 public function value(): string{ return $this->value; }
 
     /**
      * Getter
      * @return string
      */
-    public function label(): string{ return $this->label; }
+    public function label(){ return $this->label; }
+    // For php7.1 public function label(): string{ return $this->label; }
 
     /**
      * Getter
      * @return bool
      */
-    public function isRequired(): bool{ return $this->isRequired; }
+    public function isRequired(){ return $this->isRequired; }
+    // For php7.1 public function isRequired(): bool{ return $this->isRequired; }
 }

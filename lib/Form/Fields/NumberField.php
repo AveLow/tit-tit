@@ -35,8 +35,9 @@ class NumberField extends Field
      * @param float $max
      * @return NumberField
      */
-    public function setMax(float $max): NumberField{
-        $this->max = $max;
+    public function setMax(float $max){
+    // For php7.1 public function setMax(float $max): NumberField{
+            $this->max = $max;
         return $this;
     }
 
@@ -45,8 +46,9 @@ class NumberField extends Field
      * @param float $min
      * @return NumberField
      */
-    public function setMin(float $min): NumberField{
-        $this->min = $min;
+    public function setMin(float $min){
+    // For php7.1 public function setMin(float $min): NumberField{
+            $this->min = $min;
         return $this;
     }
 
@@ -55,8 +57,9 @@ class NumberField extends Field
      * @param float $step
      * @return NumberField
      */
-    public function setStep(float $step): NumberField{
-        $this->step = $step;
+    public function setStep(float $step){
+    // For php7.1 public function setStep(float $step): NumberField{
+            $this->step = $step;
         return $this;
     }
 
@@ -64,23 +67,26 @@ class NumberField extends Field
      * Getter
      * @return float
      */
-    public function max(): float{
-        return $this->max();
+    public function max(){
+    // For php7.1 public function max(): float{
+            return $this->max();
     }
 
     /**
      * Getter
      * @return float
      */
-    public function min(): float{
-        return $this->min();
+    public function min(){
+    // For php7.1 public function min(): float{
+            return $this->min();
     }
 
     /**
      * Getter
      * @return float
      */
-    public function step(): float{
-        return $this->step();
+    public function step(){
+    // For php7.1 public function step(): float{
+            return $this->step();
     }
 }

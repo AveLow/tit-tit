@@ -29,13 +29,15 @@ class TextField extends Field
      * @param int $max
      * @return TextField
      */
-    public function setMaxlength(int $max): TextField{
-        $this->maxlength = $max;
+    public function setMaxlength(int $max){
+    // For php7.1 public function setMaxlength(int $max): TextField{
+            $this->maxlength = $max;
         return $this;
     }
 
-    public function setPattern(string $pattern): TextField{
-        $this->pattern = $pattern;
+    public function setPattern(string $pattern){
+    // For php7.1 public function setPattern(string $pattern): TextField{
+            $this->pattern = $pattern;
         return $this;
     }
 
@@ -43,15 +45,17 @@ class TextField extends Field
      * Getter
      * @return int
      */
-    public function maxlength(): int{
-        return $this->maxlength();
+    public function maxlength(){
+    // For php7.1 public function maxlength(): int{
+            return $this->maxlength();
     }
 
     /**
      * Getter
      * @return string
      */
-    public function pattern(): string{
-        return $this->pattern();
+    public function pattern(){
+    // For php7.1 public function pattern(): string{
+            return $this->pattern();
     }
 }

@@ -28,7 +28,8 @@ abstract class Entity{
      * @param int $id
      * @return Entity
      */
-    public function setId(int $id): Entity{
+    public function setId(int $id){
+    // For php7.1 public function setId(int $id): Entity{
         $this->id = $id;
         return $this;
     }
@@ -37,7 +38,8 @@ abstract class Entity{
      * Getter
      * @return int
      */
-    public function id(): int{
+    public function id(){
+    // For php7.1 public function id(): int{
         return $this->id;
     }
 
@@ -45,7 +47,8 @@ abstract class Entity{
      * An entity is new when it has an id
      * @return bool
      */
-    public function isNew(): bool{
+    public function isNew(){
+    // For php7.1 public function isNew(): bool{
         return $this->id == null;
     }
 

@@ -21,7 +21,8 @@ class CookieHandler extends AppComponent{
      * @param bool $secure
      * @param bool $httponly
      */
-    public function set(string $name, mixed $value, int $expires = null, string $path = null, string $domain = null, $secure = false, $httponly = true): void{
+    public function set(string $name, mixed $value, int $expires = null, string $path = null, string $domain = null, $secure = false, $httponly = true){
+    // For php7.1 public function set(string $name, mixed $value, int $expires = null, string $path = null, string $domain = null, $secure = false, $httponly = true): void{
         if ($expires == null)
             $expires = 60*60*24*365+time();
 
@@ -32,8 +33,15 @@ class CookieHandler extends AppComponent{
         return;
     }
 
+    /**
+     * Destroy a cookie
+     *
+     * @param string $name
+     */
     public function destroy(string $name){
+    // For php7.1 public function destroy(string $name): void{
         setcookie($name, "", 0);
+        return;
     }
 
     /**
@@ -42,7 +50,8 @@ class CookieHandler extends AppComponent{
      * @param mixed|null $default default value if the cookie doesn't exist.
      * @return mixed
      */
-    public function get(string $name, mixed $default = null): mixed{
+    public function get(string $name, mixed $default = null){
+    // For php7.1 public function get(string $name, mixed $default = null): mixed{
         return isset($_COOKIE[$name]) ? $_COOKIE[$name] : $default;
     }
 
@@ -50,7 +59,8 @@ class CookieHandler extends AppComponent{
      * Authenticate the user with a token in a cookie
      * @param string $token_cookie
      */
-    public function authenticate(string $token_cookie): void{
+    public function authenticate(string $token_cookie){
+    // For php7.1 public function authenticate(string $token_cookie): void{
         $this->set('token_cookie', $token_cookie);
         $this->set('connected', true);
         return;
@@ -59,7 +69,8 @@ class CookieHandler extends AppComponent{
     /**
      * Disconnect the user by removing the token cookie
      */
-    public function disconnect(): void{
+    public function disconnect(){
+    // For php7.1 public function disconnect(): void{
         $this->set('token_cookie', null);
         $this->set('connected', false);
         return;
@@ -69,15 +80,17 @@ class CookieHandler extends AppComponent{
      * Checks if there is a connected user
      * @return bool
      */
-    public function isConnected(): bool{
-        return $this->get('connected');
+    public function isConnected(){
+    // For php7.1 public function isConnected(): bool{
+            return $this->get('connected');
     }
 
     /**
      * Return the token cookie for the connected user
      * @return string
      */
-    public function getConnectedToken(): string{
+    public function getConnectedToken(){
+    // For php7.1 public function getConnectedToken(): string{
         return (string)$this->get('token_cookie');
     }
 }

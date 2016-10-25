@@ -27,7 +27,8 @@ class SessionHandler extends AppComponent{
      * @param string $name the name of the param
      * @param mixed $value the value of the param
      */
-    public function set(string $name,mixed $value): void{
+    public function set(string $name,mixed $value){
+    // For php7.1 public function set(string $name,mixed $value): void{
         $_SESSION[$name] = $value;
         return;
     }
@@ -38,7 +39,8 @@ class SessionHandler extends AppComponent{
      * @param mixed|null $default default value if param doesn't exist
      * @return mixed
      */
-    public function get(string $name, mixed $default = null): mixed{
+    public function get(string $name, mixed $default = null){
+    // For php7.1 public function get(string $name, mixed $default = null): mixed{
         return isset($_SESSION[$name]) ? $_SESSION[$name] : $default;
     }
 
@@ -46,7 +48,8 @@ class SessionHandler extends AppComponent{
      * Unset a session param
      * @param string $name
      */
-    public function unset(string $name): void{
+    public function unset(string $name){
+    //For php7.1 public function unset(string $name): void{
         unset($_SESSION[$name]);
         return;
     }
@@ -55,7 +58,8 @@ class SessionHandler extends AppComponent{
      * Authenticate the user with a token in a session param
      * @param string $token_session
      */
-    public function authenticate(string $token_session): void{
+    public function authenticate(string $token_session){
+    // For php7.1 public function authenticate(string $token_session): void{
         $this->set('token_session', $token_session);
         $this->set('connected', true);
         return;
@@ -64,7 +68,8 @@ class SessionHandler extends AppComponent{
     /**
      * Disconnect the user
      */
-    public function disconnect(): void{
+    public function disconnect(){
+    // For php7.1 public function disconnect(): void{
         $this->set('token_session', null);
         $this->set('connected', false);
         return;
@@ -74,7 +79,8 @@ class SessionHandler extends AppComponent{
      * Checks if there is a connected user
      * @return bool
      */
-    public function isConnected(): bool{
+    public function isConnected(){
+    // For php7.1 public function isConnected(): bool{
         return $this->get('connected');
     }
 
@@ -82,7 +88,8 @@ class SessionHandler extends AppComponent{
      * Return the token session for the connected user
      * @return string
      */
-    public function getConnectedToken(): string{
+    public function getConnectedToken(){
+    // For php7.1 public function getConnectedToken(): string{
         return (string)$this->get('token_session');
     }
 

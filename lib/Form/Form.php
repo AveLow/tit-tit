@@ -49,8 +49,9 @@ class Form{
      * @param Field $field
      * @return Form
      */
-    public function addField(Field $field): Form{
-        $this->fields[$field->name()] = $field;
+    public function addField(Field $field){
+    // For php7.1 public function addField(Field $field): Form{
+            $this->fields[$field->name()] = $field;
         return $this;
     }
 
@@ -59,8 +60,9 @@ class Form{
      * @param array $fields
      * @return Form
      */
-    public function setFields(array $fields): Form{
-        $this->fields = array();
+    public function setFields(array $fields){
+    // For php7.1 public function setFields(array $fields): Form{
+            $this->fields = array();
         foreach((array) $fields as $field)
             if ($field instanceof Field)
                 $this->addField($field);
@@ -73,8 +75,9 @@ class Form{
      * @param string $name
      * @return Form
      */
-    public function removeField(string $name): Form{
-        unset($this->fields[$name]);
+    public function removeField(string $name){
+    // For php7.1 public function removeField(string $name): Form{
+            unset($this->fields[$name]);
         return $this;
     }
 
@@ -82,8 +85,9 @@ class Form{
      * Remove all fields.
      * @return Form
      */
-    public function removeAllFields(): Form{
-        $this->fields = array();
+    public function removeAllFields(){
+    // For php7.1 public function removeAllFields(): Form{
+            $this->fields = array();
         return $this;
     }
 
@@ -92,15 +96,17 @@ class Form{
      * @param string $name
      * @return null|Field
      */
-    public function field(string $name): ?Field{
-        return $this->fields[$name] ?? null;
+    public function field(string $name){
+    // For php7.1 public function field(string $name): ?Field{
+            return $this->fields[$name] ?? null;
     }
 
     /**
      * Getter
      * @return array
      */
-    public function fields(): array{ return $this->fields; }
+    public function fields(){ return $this->fields; }
+    // For php7.1 public function fields(): array{ return $this->fields; }
 
     /**
      * Add message to the form.
@@ -108,8 +114,9 @@ class Form{
      * @param string $message
      * @return Form
      */
-    public function addMessage(string $name, string $message): Form{
-        $this->messages[$name] = $message;
+    public function addMessage(string $name, string $message){
+    // For php7.1 public function addMessage(string $name, string $message): Form{
+            $this->messages[$name] = $message;
         return $this;
     }
 
@@ -118,8 +125,9 @@ class Form{
      * @param array $msg
      * @return Form
      */
-    public function setMessages(array $msg): Form{
-        $this->messages = $msg;
+    public function setMessages(array $msg){
+    // For php7.1 public function setMessages(array $msg): Form{
+            $this->messages = $msg;
 
         return $this;
     }
@@ -129,8 +137,9 @@ class Form{
      * @param string $name
      * @return Form
      */
-    public function removeMessage(string $name): Form{
-        unset($this->messages[$name]);
+    public function removeMessage(string $name){
+    // For php7.1 public function removeMessage(string $name): Form{
+            unset($this->messages[$name]);
         return $this;
     }
 
@@ -138,8 +147,9 @@ class Form{
      * Remove all message.
      * @return Form
      */
-    public function removeAllMessages(): Form{
-        $this->messages = array();
+    public function removeAllMessages(){
+    // For php7.1 public function removeAllMessages(): Form{
+            $this->messages = array();
         return $this;
     }
 
@@ -148,30 +158,34 @@ class Form{
      * @param string $name
      * @return null|string
      */
-    public function message(string $name): ?string{
-        return $this->messages[$name] ?? null;
+    public function message(string $name){
+    // For php7.1 public function message(string $name): ?string{
+            return $this->messages[$name] ?? null;
     }
 
     /**
      * Getter
      * @return array
      */
-    public function messages(): array{ return $this->messages; }
+    public function messages(){ return $this->messages; }
+    // For php7.1 public function messages(): array{ return $this->messages; }
 
     /**
      * Getter
      * @return bool
      */
-    public function isFilled(): bool{
-        return $this->isFilled;
+    public function isFilled(){
+    // For php7.1 public function isFilled(): bool{
+            return $this->isFilled;
     }
 
     /**
      * Set isFilled to true.
      * @return Form
      */
-    public function filled(): Form{
-        $this->isFilled = true;
+    public function filled(){
+    // For php7.1 public function filled(): Form{
+            $this->isFilled = true;
         return $this;
     }
 
@@ -179,8 +193,9 @@ class Form{
      * Set isFilled to false.
      * @return Form
      */
-    public function unfilled(): Form{
-        $this->isFilled = false;
+    public function unfilled(){
+    // For php7.1 public function unfilled(): Form{
+            $this->isFilled = false;
         return $this;
     }
 
@@ -188,8 +203,9 @@ class Form{
      * toggle isFilled.
      * @return Form
      */
-    public function toggleFilled(): Form{
-        $this->isFilled = !$this->isFilled;
+    public function toggleFilled(){
+    // For php7.1 public function toggleFilled(): Form{
+            $this->isFilled = !$this->isFilled;
         return $this;
     }
 }

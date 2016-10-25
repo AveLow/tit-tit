@@ -48,7 +48,8 @@ class Tit{
      * Gets the config from /config/config.json file
      * @return array
      */
-    private function getConfig(): array{
+    private function getConfig(){
+    // For php7.1 private function getConfig(): array{
         $json = file_get_contents(dirname(__DIR__, 4)."/config/config.json");
 
         return json_decode($json, true);
@@ -57,7 +58,8 @@ class Tit{
     /**
      * Fill the dependency container with the main class of Tit
      */
-    private function initContainer(): void{
+    private function initContainer(){
+    // For php7.1 private function initContainer(): void{
         $c = $this->app->getContainer();
         $app = $this->app;
 
@@ -107,8 +109,8 @@ class Tit{
      * Adds other class in the dependency container depending on the /config/config.json file
      * @param array $dependencyContainer
      */
-    private function dependencyContainer(array $dependencyContainer): void{
-
+    private function dependencyContainer(array $dependencyContainer){
+    //private function dependencyContainer(array $dependencyContainer): void{
         $c = $this->app->getContainer();
 
         foreach ((array) $dependencyContainer as $name => $class) {
@@ -135,7 +137,8 @@ class Tit{
     /**
      * Start the application
      */
-    public function run(): void{
+    public function run(){
+    // For php7.1 public function run(): void{
         $this->app->run();
         return;
     }

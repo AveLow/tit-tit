@@ -39,7 +39,7 @@ abstract class Controller extends AppComponent{
     public function __construct(App $app){
         parent::__construct($app);
         $this->container = $app->getContainer();
-        $this->twig = $this->container->Twig;
+        $this->twig = $this->container['Twig'];
     }
 
     /**
@@ -53,8 +53,9 @@ abstract class Controller extends AppComponent{
      * @return ResponseInterface
      * @throws \BadMethodCallException
      */
-    public function exec(string $action,Request $req, Response $resp, array $args): ResponseInterface{
-        if (!method_exists($this, $action))
+    public function exec(string $action,Request $req, Response $resp, array $args){
+    // For php7.1 public function exec(string $action,Request $req, Response $resp, array $args): ResponseInterface{
+            if (!method_exists($this, $action))
             throw new \BadMethodCallException("This action doesn't exist.");
         else {
             return $this->$action($req, $resp, $args);

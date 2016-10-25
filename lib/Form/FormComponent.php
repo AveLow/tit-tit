@@ -20,8 +20,9 @@ abstract class FormComponent extends AppComponent{
      * @param Form $form
      * @return FormComponent $this
      */
-    public function setForm(Form $form): FormComponent{
-        $this->form = $form;
+    public function setForm(Form $form){
+    // For php7.1 public function setForm(Form $form): FormComponent{
+            $this->form = $form;
         return $this;
     }
 
@@ -29,7 +30,8 @@ abstract class FormComponent extends AppComponent{
      * Getter
      * @return Form
      */
-    public function form(): Form{
-        return $this->form;
+    public function form(){
+    // For php7.1 public function form(): Form{
+            return $this->form;
     }
 }

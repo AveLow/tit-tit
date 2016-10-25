@@ -22,8 +22,9 @@ class BasicValidator extends AppComponent{
      * @param Field $field
      * @return bool
      */
-    public static function isNotNull(Field $field): bool{
-        return !empty($field->value()) && $field->value() !== null;
+    public static function isNotNull(Field $field){
+    // For php7.1 public static function isNotNull(Field $field): bool{
+            return !empty($field->value()) && $field->value() !== null;
     }
 
     /**
@@ -33,8 +34,9 @@ class BasicValidator extends AppComponent{
      * @param Field $field
      * @return bool
      */
-    public static function checkRequired(Field $field): bool{
-        return $field->isRequired() ? self::isNotNull($field) : true;
+    public static function checkRequired(Field $field){
+    // For php7.1 public static function checkRequired(Field $field): bool{
+            return $field->isRequired() ? self::isNotNull($field) : true;
     }
 
     /**
@@ -44,8 +46,9 @@ class BasicValidator extends AppComponent{
      * @param TextField $field
      * @return bool
      */
-    public static function checkMaxlength(TextField $field): bool{
-        return strlen($field->value()) <= $field->maxlength();
+    public static function checkMaxlength(TextField $field){
+    // For php7.1 public static function checkMaxlength(TextField $field): bool{
+            return strlen($field->value()) <= $field->maxlength();
     }
 
     /**
@@ -55,8 +58,9 @@ class BasicValidator extends AppComponent{
      * @param TextField $field
      * @return bool
      */
-    public static function checkPattern(TextField $field): bool{
-        $pattern = '/'.$field->pattern().'/';
+    public static function checkPattern(TextField $field){
+    // For php7.1 public static function checkPattern(TextField $field): bool{
+            $pattern = '/'.$field->pattern().'/';
 
         return preg_match($pattern, $field->value());
     }
@@ -68,8 +72,9 @@ class BasicValidator extends AppComponent{
      * @param NumberField $field
      * @return bool
      */
-    public static function checkMin(NumberField $field): bool{
-        return $field->value() >= $field->min();
+    public static function checkMin(NumberField $field){
+    // For php7.1 public static function checkMin(NumberField $field): bool{
+            return $field->value() >= $field->min();
     }
 
     /**
@@ -79,8 +84,9 @@ class BasicValidator extends AppComponent{
      * @param NumberField $field
      * @return bool
      */
-    public static function checkMax(NumberField $field): bool{
-        return $field->value() <= $field->max();
+    public static function checkMax(NumberField $field){
+    // For php7.1 public static function checkMax(NumberField $field): bool{
+            return $field->value() <= $field->max();
     }
 
     /**
@@ -90,8 +96,9 @@ class BasicValidator extends AppComponent{
      * @param NumberField $field
      * @return bool
      */
-    public static function checkInRange(NumberField $field): bool{
-        return self::checkMax($field) && self::checkMin($field);
+    public static function checkInRange(NumberField $field){
+    // For php7.1 public static function checkInRange(NumberField $field): bool{
+            return self::checkMax($field) && self::checkMin($field);
     }
 
     /**
@@ -101,8 +108,9 @@ class BasicValidator extends AppComponent{
      * @param NumberField $field
      * @return bool
      */
-    public static function checkStep(NumberField $field): bool{
-        return $field->value()%$field->step() == 0;
+    public static function checkStep(NumberField $field){
+    // For php7.1 public static function checkStep(NumberField $field): bool{
+            return $field->value()%$field->step() == 0;
     }
 
     /**
@@ -112,8 +120,9 @@ class BasicValidator extends AppComponent{
      * @param DateField $field
      * @return bool
      */
-    public static function checkFormatDate(DateField $field): bool{
-        try{
+    public static function checkFormatDate(DateField $field){
+    // For php7.1 public static function checkFormatDate(DateField $field): bool{
+            try{
             Carbon::createFromFormat($field->format(), $field->value());
             return true;
         }catch(\InvalidArgumentException $e){
@@ -129,8 +138,9 @@ class BasicValidator extends AppComponent{
      * @param DateField $field
      * @return bool
      */
-    public static function checkDateMin(DateField $field): bool{
-        $date = Carbon::createFromFormat($field->format(), $field->value());
+    public static function checkDateMin(DateField $field){
+    // For php7.1 public static function checkDateMin(DateField $field): bool{
+            $date = Carbon::createFromFormat($field->format(), $field->value());
         $minDate =  Carbon::createFromFormat($field->format(), $field->min());
 
         return $minDate->lte($date);
@@ -144,8 +154,9 @@ class BasicValidator extends AppComponent{
      * @param DateField $field
      * @return bool
      */
-    public static function checkDateMax(DateField $field): bool{
-        $date = Carbon::createFromFormat($field->format(), $field->value());
+    public static function checkDateMax(DateField $field){
+    // For php7.1 public static function checkDateMax(DateField $field): bool{
+            $date = Carbon::createFromFormat($field->format(), $field->value());
         $maxDate =  Carbon::createFromFormat($field->format(), $field->min());
 
         return $maxDate->gte($date);
@@ -158,8 +169,9 @@ class BasicValidator extends AppComponent{
      * @param CheckField $field
      * @return bool
      */
-    public static function isChecked(CheckField $field): bool{
-        return $field->isChecked();
+    public static function isChecked(CheckField $field){
+    // For php7.1 public static function isChecked(CheckField $field): bool{
+            return $field->isChecked();
     }
 
     /**
@@ -169,8 +181,9 @@ class BasicValidator extends AppComponent{
      * @param array $fields
      * @return bool
      */
-    public static function atLeastOneChecked(array $fields):bool {
-        foreach ($fields as $field){
+    public static function atLeastOneChecked(array $fields){
+    // For php7.1 public static function atLeastOneChecked(array $fields): bool{
+            foreach ($fields as $field){
             if ($field->isChecked())
                 return true;
         }

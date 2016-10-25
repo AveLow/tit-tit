@@ -17,7 +17,9 @@ class Router extends AppComponent{
     /**
      * loads routes from the /config/routing.json file and adds routes to slim
      */
-    public function loadRoutes(): void{
+
+    public function loadRoutes(){
+    // For php7.1 public function loadRoutes(): void{
         $json = file_get_contents(dirname(__DIR__, 2)."/config/routing.json");
         $routesArray = json_decode($json, true);
 

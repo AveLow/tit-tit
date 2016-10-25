@@ -56,7 +56,8 @@ class Route{
      * @return Route
      * @throws \UnexpectedValueException
      */
-    public function setMethod(string $method): Route{
+    public function setMethod(string $method){
+    // For php7.1 public function setMethod(string $method): Route{
         if (in_array($method, ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'PATCH', 'OPTIONS'])){
             $this->method = $method;
             return $this;
@@ -69,7 +70,8 @@ class Route{
      * @param string $url
      * @return Route
      */
-    public function setUrl(string $url): Route{
+    public function setUrl(string $url){
+    // For php7.1 public function setUrl(string $url): Route{
         $this->url = $url;
         return $this;
     }
@@ -78,7 +80,8 @@ class Route{
      * @param string $controller
      * @return Route
      */
-    public function setController(string $controller): Route{
+    public function setController(string $controller){
+    // For php7.1 public function setController(string $controller): Route{
         $this->controller = $controller;
         return $this;
     }
@@ -87,7 +90,8 @@ class Route{
      * @param string $action
      * @return Route
      */
-    public function setAction(string $action): Route{
+    public function setAction(string $action){
+    // For php7.1 public function setAction(string $action): Route{
         $this->action = $action;
         return $this;
     }
@@ -96,7 +100,8 @@ class Route{
      * @param string $name
      * @return Route
      */
-    public function setName(string $name): Route{
+    public function setName(string $name){
+    // For php7.1 public function setName(string $name): Route{
         $this->name = $name;
         return $this;
     }
@@ -105,29 +110,35 @@ class Route{
      * Getter
      * @return string
      */
-    public function method(): string{ return $this->method; }
+    public function method(){ return $this->method; }
+    // For php7.1 public function method(): string{ return $this->method; }
 
     /**
      * Getter
      * @return string
      */
-    public function url(): string{ return $this->url; }
+    public function url(){ return $this->url; }
+    // For php7.1 public function url(): string{ return $this->url; }
 
     /**
      * Getter
      * @return string
      */
-    public function controller(): string{ return $this->controller; }
+    public function controller(){ return $this->controller; }
+    // For php7.1 public function controller(): string{ return $this->controller; }
 
     /**
      * Getter
      * @return string
      */
-    public function action(): string{ return $this->action; }
+    public function action(){ return $this->action; }
+    // For php7.1 public function action(): string{ return $this->action; }
 
     /**
      * Getter
      * @return string
      */
-    public function name(): string{ return $this->name; }
+    public function name(){ return $this->name; }
+    // For php7.1 public function name(): string{ return $this->name; }
+
 }

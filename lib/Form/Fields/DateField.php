@@ -33,21 +33,23 @@ class DateField extends Field
 
     /**
      * Set the max date.
-     * @param string $max
+     * @param float $max
      * @return DateField
      */
-    public function setMax(float $max): DateField{
-        $this->max = $max;
+    public function setMax(float $max){
+    // For php7.1 public function setMax(float $max): DateField{
+            $this->max = $max;
         return $this;
     }
 
     /**
      * Set the min date.
-     * @param string $min
+     * @param float $min
      * @return DateField
      */
-    public function setMin(float $min): DateField{
-        $this->min = $min;
+    public function setMin(float $min){
+    // For php7.1 public function setMin(float $min): DateField{
+            $this->min = $min;
         return $this;
     }
 
@@ -56,8 +58,9 @@ class DateField extends Field
      * @param string $format
      * @return DateField
      */
-    public function setFormat(string $format): DateField{
-        $this->format = $format;
+    public function setFormat(string $format){
+    // For php7.1 public function setFormat(string $format): DateField{
+            $this->format = $format;
         return $this;
     }
 
@@ -65,24 +68,27 @@ class DateField extends Field
      * Getter
      * @return string
      */
-    public function max(): string{
-        return $this->max();
+    public function max(){
+    // For php7.1 public function max(): string{
+            return $this->max();
     }
 
     /**
      * Getter
      * @return string
      */
-    public function min(): string{
-        return $this->min();
+    public function min(){
+    // For php7.1 public function min(): string{
+            return $this->min();
     }
 
     /**
      * Getter
      * @return string
      */
-    public function format(): string{
-        return $this->format;
+    public function format(){
+    // For php7.1 public function format(): string{
+            return $this->format;
     }
 
     /**
@@ -90,8 +96,9 @@ class DateField extends Field
      *
      * @return Carbon
      */
-    public function getDate(): Carbon{
-        return Carbon::createFromFormat($this->format, $this->value);
+    public function getDate(){
+    // For php7.1 public function getDate(): Carbon{
+            return Carbon::createFromFormat($this->format, $this->value);
     }
 
     /**
@@ -100,8 +107,9 @@ class DateField extends Field
      * @param Carbon $date
      * @return DateField
      */
-    public function setDate(Carbon $date): DateField{
-        $this->value = $date->toDateString();
+    public function setDate(Carbon $date){
+    // For php7.1 public function setDate(Carbon $date): DateField{
+            $this->value = $date->toDateString();
         return $this;
     }
 }

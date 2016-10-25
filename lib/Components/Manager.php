@@ -21,7 +21,7 @@ abstract class Manager extends AppComponent{
 
     /**
      * Manager constructor.
-     * @param App $slim
+     * @param App $app
      * @param \PDO $db
      */
     public function __construct(App $app, \PDO $db){
