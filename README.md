@@ -1,7 +1,4 @@
-Library of Tit Framework
---
+# Tit-lib
 
-- Add Form directory
-- Write Readme
-
-*use Tit-skeleton to build a project with Tit*
+To use this library, you need to use the `avelow/tit-skeleton` package.
+It will show you how to use the Tit framework.
