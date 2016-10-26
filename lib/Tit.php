@@ -1,7 +1,10 @@
 <?php
 namespace Tit\lib;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Slim\App;
+use Slim\Container;
 use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Tit\lib\Components\SessionHandler;
@@ -64,28 +67,28 @@ class Tit{
         $app = $this->app;
 
         // Slim App in the container
-        $c['App'] = function() use ($app): App{
+        $c['App'] = function(Container $c) use ($app): App{
             return $app;
         };
 
         // Database connection in the container
-        $c['Db'] = function() use ($c): \PDO{
+        $c['Db'] = function(Container $c): \PDO{
             $db = $c['settings']['db'];
             $pdo = new \PDO("mysql:host=" . $db['host'] . ";dbname=" . $db['name'], $db['login'], $db['password']);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $pdo;
         };
 
-        $c['SessionHandler'] = function() use ($c): SessionHandler{
+        $c['SessionHandler'] = function(Container $c): SessionHandler{
             return new SessionHandler($c['Slim']);
         };
 
-        $c['CookieHandler'] = function() use ($c): CookieHandler{
+        $c['CookieHandler'] = function(Container $c): CookieHandler{
             return new CookieHandler($c['Slim']);
         };
 
         // Twig (template manager) in the container
-        $c['Twig'] = function() use ($c): Twig{
+        $c['Twig'] = function(Container $c): Twig{
 
             $config = $c['settings']['twig'];
 
@@ -101,6 +104,35 @@ class Tit{
 
             return $twig;
         };
+
+        if ($c['settings']['errors']['enableCustoms']){
+
+            $className = $c['settings']['errors']['className'];
+
+            $c['errorHandler'] = function (Container $c) use ($className) {
+                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                    return $c[$className]->errorHandler($request, $response, $exception);
+                };
+            };
+
+            $c['notFoundHandler'] = function (Container $c) use ($className) {
+                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                    return $c[$className]->notFoundHandler($request, $response, $exception);
+                };
+            };
+
+            $c['notAllowedHandler'] = function (Container $c) use ($className) {
+                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                    return $c[$className]->notAllowedHandler($request, $response, $exception);
+                };
+            };
+
+            $c['phpErrorHandler'] = function (Container $c) use ($className) {
+                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                    return $c[$className]->phpErrorHandler($request, $response, $exception);
+                };
+            };
+        }
 
         return;
     }
