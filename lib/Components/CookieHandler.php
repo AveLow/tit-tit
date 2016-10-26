@@ -57,12 +57,13 @@ class CookieHandler extends AppComponent{
 
     /**
      * Authenticate the user with a token in a cookie
+     * @param int $selector
      * @param string $token_cookie
      */
-    public function authenticate(string $token_cookie){
+    public function authenticate(int $selector, string $token_cookie){
     // For php7.1 public function authenticate(string $token_cookie): void{
         $this->set('token_cookie', $token_cookie);
-        $this->set('connected', true);
+        $this->set('token_selector', $selector);
         return;
     }
 
@@ -72,7 +73,7 @@ class CookieHandler extends AppComponent{
     public function disconnect(){
     // For php7.1 public function disconnect(): void{
         $this->set('token_cookie', null);
-        $this->set('connected', false);
+        $this->set('token_selector', null);
         return;
     }
 
@@ -82,7 +83,7 @@ class CookieHandler extends AppComponent{
      */
     public function isConnected(){
     // For php7.1 public function isConnected(): bool{
-            return $this->get('connected');
+        return $this->get('token_selector') != null;
     }
 
     /**
@@ -92,5 +93,14 @@ class CookieHandler extends AppComponent{
     public function getConnectedToken(){
     // For php7.1 public function getConnectedToken(): string{
         return (string)$this->get('token_cookie');
+    }
+
+    /**
+     * Return the token cookie for the connected user
+     * @return string
+     */
+    public function getConnectedSelector(){
+    // For php7.1 public function getConnectedToken(): string{
+        return (string)$this->get('token_selector');
     }
 }

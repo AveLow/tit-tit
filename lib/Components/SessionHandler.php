@@ -3,6 +3,7 @@ namespace Tit\lib\Components;
 
 use Slim\App;
 use Tit\lib\AppComponent;
+use Tit\lib\Security\SessionManager;
 
 /**
  * Class SessionHandler
@@ -17,9 +18,9 @@ class SessionHandler extends AppComponent{
      * Start session
      * @param App $app
      */
-    public function __construct(App $app){
+    public function __construct(App $app, string $name, int $limit, string $path, ?string $domain, ?bool $secure){
         parent::__construct($app);
-        session_start();
+        SessionManager::sessionStart($name, $limit, $path, $domain, $secure);
     }
 
     /**
@@ -58,9 +59,9 @@ class SessionHandler extends AppComponent{
      * Authenticate the user with a token in a session param
      * @param string $token_session
      */
-    public function authenticate(string $token_session){
-    // For php7.1 public function authenticate(string $token_session): void{
-        $this->set('token_session', $token_session);
+    public function authenticate(int $id_user){
+    // For php7.1 public function authenticate(int $id_user): void{
+        $this->set('id_user', $id_user);
         $this->set('connected', true);
         return;
     }
@@ -70,7 +71,7 @@ class SessionHandler extends AppComponent{
      */
     public function disconnect(){
     // For php7.1 public function disconnect(): void{
-        $this->set('token_session', null);
+        $this->set('id_user', null);
         $this->set('connected', false);
         return;
     }
@@ -88,9 +89,9 @@ class SessionHandler extends AppComponent{
      * Return the token session for the connected user
      * @return string
      */
-    public function getConnectedToken(){
-    // For php7.1 public function getConnectedToken(): string{
-        return (string)$this->get('token_session');
+    public function getConnectedId(){
+    // For php7.1 public function getConnectedId(): string{
+        return (string)$this->get('id_user');
     }
 
 }

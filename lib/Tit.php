@@ -67,7 +67,7 @@ class Tit{
         $app = $this->app;
 
         // Slim App in the container
-        $c['App'] = function(Container $c) use ($app): App{
+        $c['App'] = function() use ($app): App{
             return $app;
         };
 
@@ -80,7 +80,8 @@ class Tit{
         };
 
         $c['SessionHandler'] = function(Container $c): SessionHandler{
-            return new SessionHandler($c['Slim']);
+            $session = $c['settings']['session'];
+            return new SessionHandler($c['Slim'], $session['name'], $session['limit'], $session['path'], $session['domain'], $session['secure']);
         };
 
         $c['CookieHandler'] = function(Container $c): CookieHandler{
