@@ -1,8 +1,6 @@
 <?php
 namespace Tit\lib;
 
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Slim\App;
 use Slim\Container;
 use Slim\Views\Twig;
@@ -12,13 +10,7 @@ use Tit\lib\Components\CookieHandler;
 
 use Tit\lib\Routing\Router;
 
-/**
- * Class Tit
- * @package Tit\lib
- *
- * Class that prepare all the application
- * It's the only class that need to be instantiate and run in the index.php file
- */
+
 class Tit{
 
     /**
@@ -28,14 +20,16 @@ class Tit{
     protected $app;
 
     /**
-     * Tit constructor.
+     * Tit init.
      *
      * Builds the app and prepare it to be ready to run by :
      * 	- filling the dependency container
      * 	- adding routes to slim
+     *
+     * @param array $config
+     * @param array $routing
      */
-    public function __construct(){
-        $config = $this->getConfig();
+    public function init(array $config, array $routing){
 
         $settings = array('settings' => $config['settings']);
         $this->app = new App($settings);
@@ -44,18 +38,7 @@ class Tit{
         $this->dependencyContainer($config['dependencyContainer']);
 
         $router = new Router($this->app);
-        $router->loadRoutes();
-    }
-
-    /**
-     * Gets the config from /config/config.json file
-     * @return array
-     */
-    private function getConfig(){
-    // For php7.1 private function getConfig(): array{
-        $json = file_get_contents(dirname(__DIR__, 4)."/config/config.json");
-
-        return json_decode($json, true);
+        $router->loadRoutes($routing);
     }
 
     /**
@@ -67,29 +50,29 @@ class Tit{
         $app = $this->app;
 
         // Slim App in the container
-        $c['App'] = function() use ($app): App{
+        $c['App'] = function() use ($app){
             return $app;
         };
 
         // Database connection in the container
-        $c['Db'] = function(Container $c): \PDO{
+        $c['Db'] = function(Container $c){
             $db = $c['settings']['db'];
             $pdo = new \PDO("mysql:host=" . $db['host'] . ";dbname=" . $db['name'], $db['login'], $db['password']);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $pdo;
         };
 
-        $c['SessionHandler'] = function(Container $c): SessionHandler{
+        $c['SessionHandler'] = function(Container $c){
             $session = $c['settings']['session'];
             return new SessionHandler($c['Slim'], $session['name'], $session['limit'], $session['path'], $session['domain'], $session['secure']);
         };
 
-        $c['CookieHandler'] = function(Container $c): CookieHandler{
+        $c['CookieHandler'] = function(Container $c){
             return new CookieHandler($c['Slim']);
         };
 
         // Twig (template manager) in the container
-        $c['Twig'] = function(Container $c): Twig{
+        $c['Twig'] = function(Container $c){
 
             $config = $c['settings']['twig'];
 
@@ -111,25 +94,25 @@ class Tit{
             $className = $c['settings']['errors']['className'];
 
             $c['errorHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                return function ($request, $response, $exception) use ($c, $className) {
                     return $c[$className]->errorHandler($request, $response, $exception);
                 };
             };
 
             $c['notFoundHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                return function ($request, $response, $exception) use ($c, $className) {
                     return $c[$className]->notFoundHandler($request, $response, $exception);
                 };
             };
 
             $c['notAllowedHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                return function ($request, $response, $exception) use ($c, $className) {
                     return $c[$className]->notAllowedHandler($request, $response, $exception);
                 };
             };
 
             $c['phpErrorHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className): ResponseInterface {
+                return function ($request, $response, $exception) use ($c, $className) {
                     return $c[$className]->phpErrorHandler($request, $response, $exception);
                 };
             };
@@ -148,7 +131,7 @@ class Tit{
 
         foreach ((array) $dependencyContainer as $name => $class) {
 
-            if (stristr($name, 'use_this_to_comment') === false){
+            if (stristr($name, '###') === false){
                 $c[$name] = function($c) use ($class){
                     $className = "\\src\\".$class['path'];
 
@@ -169,10 +152,22 @@ class Tit{
 
     /**
      * Start the application
+     * @param array $config
+     * @param array $routing
      */
-    public function run(){
+    public function run(array $config, array $routing){
     // For php7.1 public function run(): void{
+
+        $this->init($config, $routing);
         $this->app->run();
         return;
+    }
+
+    /**
+     * Getter
+     * @return App
+     */
+    public function app(){
+        return $this->app;
     }
 }

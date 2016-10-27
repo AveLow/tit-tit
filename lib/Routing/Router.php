@@ -16,15 +16,13 @@ class Router extends AppComponent{
 
     /**
      * loads routes from the /config/routing.json file and adds routes to slim
+     * @param array $routing
      */
-
-    public function loadRoutes(){
+    public function loadRoutes(array $routesArray){
     // For php7.1 public function loadRoutes(): void{
-        $json = file_get_contents(dirname(__DIR__, 5)."/config/routing.json");
-        $routesArray = json_decode($json, true);
 
         foreach ((array) $routesArray as $name => $r){
-            if (stristr($name, 'itsacomment') === false){
+            if (stristr($name, '###') === false){
                 $route = new Route();
                 $route->setMethod($r['method'])
                     ->setUrl($r['url'])
