@@ -133,7 +133,7 @@ class Tit{
 
             if (stristr($name, '###') === false){
                 $c[$name] = function($c) use ($class){
-                    $className = "\\src\\".$class['path'];
+                    $className = $class['path'];
 
                     // On prépare les arguments
                     $args = array();
