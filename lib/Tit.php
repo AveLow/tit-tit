@@ -28,14 +28,18 @@ class Tit{
      *
      * @param array $config
      * @param array $routing
+     * @param array $depencyContainers
      */
-    public function init(array $config, array $routing){
+    public function init(array $config, array $routing, array $depencyContainers){
 
         $settings = array('settings' => $config['settings']);
         $this->app = new App($settings);
 
         $this->initContainer();
-        $this->dependencyContainer($config['dependencyContainer']);
+
+        foreach((array)$depencyContainers as $dependencyContainer){
+            $this->dependencyContainer($dependencyContainer);
+        }
 
         $router = new Router($this->app);
         $router->loadRoutes($routing);
@@ -154,11 +158,12 @@ class Tit{
      * Start the application
      * @param array $config
      * @param array $routing
+     * @param array $dependencyContainers
      */
-    public function run(array $config, array $routing){
+    public function run(array $config, array $routing, array $dependencyContainers){
     // For php7.1 public function run(): void{
 
-        $this->init($config, $routing);
+        $this->init($config, $routing, $dependencyContainers);
         $this->app->run();
         return;
     }
