@@ -27,10 +27,10 @@ class Tit{
      * 	- adding routes to slim
      *
      * @param array $config
-     * @param array $routing
+     * @param array $routings
      * @param array $depencyContainers
      */
-    public function init(array $config, array $routing, array $depencyContainers){
+    public function init(array $config, array $routings, array $depencyContainers){
 
         $settings = array('settings' => $config['settings']);
         $this->app = new App($settings);
@@ -42,7 +42,9 @@ class Tit{
         }
 
         $router = new Router($this->app);
-        $router->loadRoutes($routing);
+        foreach((array)$routings as $routing){
+            $router->loadRoutes($routing);
+        }
     }
 
     /**
@@ -157,13 +159,13 @@ class Tit{
     /**
      * Start the application
      * @param array $config
-     * @param array $routing
+     * @param array $routings
      * @param array $dependencyContainers
      */
-    public function run(array $config, array $routing, array $dependencyContainers){
+    public function run(array $config, array $routings, array $dependencyContainers){
     // For php7.1 public function run(): void{
 
-        $this->init($config, $routing, $dependencyContainers);
+        $this->init($config, $routings, $dependencyContainers);
         $this->app->run();
         return;
     }
