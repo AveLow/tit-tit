@@ -102,6 +102,20 @@ class Form{
     }
 
     /**
+     * Return the value of the field.
+     * @param string $name
+     * @return null|string
+     */
+    public function value(string $name){
+    // For php7.1 public function field(string $name): ?Field{
+        $field = $this->fields[$name] ?? null;
+        if ($field !== null)
+            return $field->value();
+
+        return null;
+    }
+
+    /**
      * Getter
      * @return Field[]
      */
