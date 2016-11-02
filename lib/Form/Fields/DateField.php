@@ -70,7 +70,7 @@ class DateField extends Field
      */
     public function max(){
     // For php7.1 public function max(): string{
-            return $this->max();
+            return $this->max;
     }
 
     /**
@@ -79,7 +79,7 @@ class DateField extends Field
      */
     public function min(){
     // For php7.1 public function min(): string{
-            return $this->min();
+            return $this->min;
     }
 
     /**

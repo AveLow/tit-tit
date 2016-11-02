@@ -47,7 +47,7 @@ class TextField extends Field
      */
     public function maxlength(){
     // For php7.1 public function maxlength(): int{
-            return $this->maxlength();
+            return $this->maxlength;
     }
 
     /**
@@ -56,6 +56,6 @@ class TextField extends Field
      */
     public function pattern(){
     // For php7.1 public function pattern(): string{
-            return $this->pattern();
+            return $this->pattern;
     }
 }

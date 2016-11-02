@@ -69,7 +69,7 @@ class NumberField extends Field
      */
     public function max(){
     // For php7.1 public function max(): float{
-            return $this->max();
+            return $this->max;
     }
 
     /**
@@ -78,7 +78,7 @@ class NumberField extends Field
      */
     public function min(){
     // For php7.1 public function min(): float{
-            return $this->min();
+            return $this->min;
     }
 
     /**
@@ -87,6 +87,6 @@ class NumberField extends Field
      */
     public function step(){
     // For php7.1 public function step(): float{
-            return $this->step();
+            return $this->step;
     }
 }
