@@ -35,9 +35,9 @@ class CheckField extends Field
      * @param bool $checked
      * @return Field
      */
-    public function checked(bool $checked){
-    // For php7.1 public function checked(bool $checked): Field{
-            $this->checked = $checked;
+    public function checked(){
+    // For php7.1 public function checked(): Field{
+            $this->checked = true;
         return $this;
     }
 
@@ -46,9 +46,9 @@ class CheckField extends Field
      * @param bool $checked
      * @return Field
      */
-    public function unchecked(bool $checked){
-    // For php7.1 public function unchecked(bool $checked): Field{
-            $this->checked = $checked;
+    public function unchecked(){
+    // For php7.1 public function unchecked(): Field{
+            $this->checked = false;
         return $this;
     }
 

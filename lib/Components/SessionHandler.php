@@ -15,10 +15,15 @@ class SessionHandler extends AppComponent{
 
     /**
      * SessionHandler constructor.
-     * Start session
+     * Start Session
      * @param App $app
+     * @param string $name
+     * @param int $limit
+     * @param string $path
+     * @param string|null $domain
+     * @param bool|null $secure
      */
-    public function __construct(App $app, string $name, int $limit, string $path, ?string $domain, ?bool $secure){
+    public function __construct(App $app, string $name, int $limit, string $path, string $domain = null, bool $secure = null){
         parent::__construct($app);
         SessionManager::sessionStart($name, $limit, $path, $domain, $secure);
     }
@@ -57,7 +62,7 @@ class SessionHandler extends AppComponent{
 
     /**
      * Authenticate the user with a token in a session param
-     * @param string $token_session
+     * @param int $id_user
      */
     public function authenticate(int $id_user){
     // For php7.1 public function authenticate(int $id_user): void{

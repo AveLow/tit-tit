@@ -70,11 +70,11 @@ class Tit{
 
         $c['SessionHandler'] = function(Container $c){
             $session = $c['settings']['session'];
-            return new SessionHandler($c['Slim'], $session['name'], $session['limit'], $session['path'], $session['domain'], $session['secure']);
+            return new SessionHandler($c['App'], $session['name'], $session['limit'], $session['path'], $session['domain'], $session['secure']);
         };
 
         $c['CookieHandler'] = function(Container $c){
-            return new CookieHandler($c['Slim']);
+            return new CookieHandler($c['App']);
         };
 
         // Twig (template manager) in the container

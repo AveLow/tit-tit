@@ -60,7 +60,7 @@ class SessionManager{
 
     static protected function validateSession()
     {
-        if( isset($_SESSION['OBSOLETE']) && !isset($_SESSION['EXPIRES']) )
+        if(isset($_SESSION['OBSOLETE']) && !isset($_SESSION['EXPIRES']) )
             return false;
 
         if(isset($_SESSION['EXPIRES']) && $_SESSION['EXPIRES'] < time())
@@ -72,7 +72,7 @@ class SessionManager{
     static function regenerateSession()
     {
         // If this session is obsolete it means there already is a new id
-        if(isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] == true)
+        if(isset($_SESSION['OBSOLETE']) && $_SESSION['OBSOLETE'] == true)
             return;
 
         // Set current session to expire in 10 seconds
