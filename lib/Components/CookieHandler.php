@@ -21,7 +21,7 @@ class CookieHandler extends AppComponent{
      * @param bool $secure
      * @param bool $httponly
      */
-    public function set(string $name, mixed $value, int $expires = null, string $path = null, string $domain = null, $secure = false, $httponly = true){
+    public function set(string $name, $value, int $expires = null, string $path = null, string $domain = null, $secure = false, $httponly = true){
     // For php7.1 public function set(string $name, mixed $value, int $expires = null, string $path = null, string $domain = null, $secure = false, $httponly = true): void{
         if ($expires == null)
             $expires = 60*60*24*365+time();
@@ -50,7 +50,7 @@ class CookieHandler extends AppComponent{
      * @param mixed|null $default default value if the cookie doesn't exist.
      * @return mixed
      */
-    public function get(string $name, mixed $default = null){
+    public function get(string $name, $default = null){
     // For php7.1 public function get(string $name, mixed $default = null): mixed{
         return isset($_COOKIE[$name]) ? $_COOKIE[$name] : $default;
     }

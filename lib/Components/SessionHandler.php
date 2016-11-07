@@ -33,7 +33,7 @@ class SessionHandler extends AppComponent{
      * @param string $name the name of the param
      * @param mixed $value the value of the param
      */
-    public function set(string $name,mixed $value){
+    public function set(string $name, $value){
     // For php7.1 public function set(string $name,mixed $value): void{
         $_SESSION[$name] = $value;
         return;
@@ -45,7 +45,7 @@ class SessionHandler extends AppComponent{
      * @param mixed|null $default default value if param doesn't exist
      * @return mixed
      */
-    public function get(string $name, mixed $default = null){
+    public function get(string $name, $default = null){
     // For php7.1 public function get(string $name, mixed $default = null): mixed{
         return isset($_SESSION[$name]) ? $_SESSION[$name] : $default;
     }

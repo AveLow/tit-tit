@@ -103,13 +103,40 @@ class DateField extends Field
 
     /**
      * Set the value from a Carbon object.
+     * The value is a date.
      *
      * @param Carbon $date
      * @return DateField
      */
     public function setDate(Carbon $date){
-    // For php7.1 public function setDate(Carbon $date): DateField{
-            $this->value = $date->toDateString();
+        // For php7.1 public function setDate(Carbon $date): DateField{
+        $this->value = $date->toDateString();
+        return $this;
+    }
+
+    /**
+     * Set the value from a Carbon object.
+     * The value is a time.
+     *
+     * @param Carbon $date
+     * @return DateField
+     */
+    public function setTime(Carbon $date){
+        // For php7.1 public function setDate(Carbon $date): DateField{
+        $this->value = $date->toTimeString();
+        return $this;
+    }
+
+    /**
+     * Set the value from a Carbon object.
+     * THe value is a date and a time.
+     *
+     * @param Carbon $date
+     * @return DateField
+     */
+    public function setDateTime(Carbon $date){
+        // For php7.1 public function setDate(Carbon $date): DateField{
+        $this->value = $date->toDateTimeString();
         return $this;
     }
 }
