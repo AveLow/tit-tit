@@ -40,7 +40,10 @@ class CookieHandler extends AppComponent{
      */
     public function destroy(string $name){
     // For php7.1 public function destroy(string $name): void{
-        setcookie($name, "", 0);
+        if (isset($_COOKIE[$name])) {
+            unset($_COOKIE[$name]);
+            setcookie($name, '', time() - 3600, '/'); // empty value and old timestamp
+        }
         return;
     }
 
@@ -72,8 +75,8 @@ class CookieHandler extends AppComponent{
      */
     public function disconnect(){
     // For php7.1 public function disconnect(): void{
-        $this->set('token_cookie', null);
-        $this->set('token_selector', null);
+        $this->destroy('token_cookie');
+        $this->destroy('token_selector');
         return;
     }
 
