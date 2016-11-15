@@ -106,20 +106,20 @@ class Tit{
             };
 
             $c['notFoundHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className) {
-                    return $c[$className]->notFoundHandler($request, $response, $exception);
+                return function ($request, $response) use ($c, $className) {
+                    return $c[$className]->notFoundHandler($request, $response);
                 };
             };
 
             $c['notAllowedHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className) {
-                    return $c[$className]->notAllowedHandler($request, $response, $exception);
+                return function ($request, $response, $allowedMethods) use ($c, $className) {
+                    return $c[$className]->notAllowedHandler($request, $response, $allowedMethods);
                 };
             };
 
             $c['phpErrorHandler'] = function (Container $c) use ($className) {
-                return function ($request, $response, $exception) use ($c, $className) {
-                    return $c[$className]->phpErrorHandler($request, $response, $exception);
+                return function ($request, $response, $throwable) use ($c, $className) {
+                    return $c[$className]->phpErrorHandler($request, $response, $throwable);
                 };
             };
         }
