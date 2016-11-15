@@ -86,7 +86,7 @@ class CookieHandler extends AppComponent{
      */
     public function isConnected(){
     // For php7.1 public function isConnected(): bool{
-        return $this->get('token_selector') != null;
+        return (bool) $this->get('token_selector');
     }
 
     /**

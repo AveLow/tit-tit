@@ -76,8 +76,8 @@ class SessionHandler extends AppComponent{
      */
     public function disconnect(){
     // For php7.1 public function disconnect(): void{
-        $this->set('id_user', null);
-        $this->set('connected', false);
+        $this->unset('id_user');
+        $this->unset('connected');
         return;
     }
 
@@ -87,7 +87,7 @@ class SessionHandler extends AppComponent{
      */
     public function isConnected(){
     // For php7.1 public function isConnected(): bool{
-        return $this->get('connected');
+        return (bool) $this->get('connected');
     }
 
     /**
