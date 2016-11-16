@@ -83,7 +83,7 @@ class Tit{
             $config = $c['settings']['twig'];
 
             if ($config['cache'] != false)
-                $twig = new Twig(dirname(__DIR__, 4).$config['template-path'], ['cache' => __DIR__.$config['cache']]);
+                $twig = new Twig(dirname(__DIR__, 4).$config['template-path'], ['cache' => dirname(__DIR__, 4).$config['cache']]);
             else
                 $twig = new Twig(dirname(__DIR__, 4).$config['template-path'], ['cache' => false]);
 
