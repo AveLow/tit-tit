@@ -70,7 +70,6 @@ abstract class Controller extends AppComponent{
      * @param Request $req
      * @param Response $resp
      * @param array $args
-     * @return ResponseInterface
      * @throws \BadMethodCallException
      */
     public function execMethod(string $action, array $args){
