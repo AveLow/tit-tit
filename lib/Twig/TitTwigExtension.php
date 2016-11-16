@@ -36,6 +36,6 @@ class TitTwigExtension extends TwigExtension
 
     public function renderMethod($controller,  $method, $args){
         $ctrl = $this->container[$controller];
-        return $ctrl->$method($args);
+        return $ctrl->execMethod($method, $args);
     }
 }

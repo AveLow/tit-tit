@@ -54,11 +54,31 @@ abstract class Controller extends AppComponent{
      * @throws \BadMethodCallException
      */
     public function exec(string $action,Request $req, Response $resp, array $args){
-    // For php7.1 public function exec(string $action,Request $req, Response $resp, array $args): ResponseInterface{
-            if (!method_exists($this, $action))
+        // For php7.1 public function exec(string $action,Request $req, Response $resp, array $args): ResponseInterface{
+        if (!method_exists($this, $action))
             throw new \BadMethodCallException("This action doesn't exist.");
         else {
             return $this->$action($req, $resp, $args);
+        }
+    }
+
+    /**
+     * Function that execute the action
+     * It can be override to add some function before the execution of the action
+     *
+     * @param string $action
+     * @param Request $req
+     * @param Response $resp
+     * @param array $args
+     * @return ResponseInterface
+     * @throws \BadMethodCallException
+     */
+    public function execMethod(string $action, array $args){
+        // For php7.1 public function exec(string $action,Request $req, Response $resp, array $args): String{
+        if (!method_exists($this, $action))
+            throw new \BadMethodCallException("This method doesn't exist.");
+        else {
+            return $this->$action($args);
         }
     }
 }
