@@ -4,11 +4,11 @@ namespace Tit\lib;
 use Slim\App;
 use Slim\Container;
 use Slim\Views\Twig;
-use Slim\Views\TwigExtension;
 use Tit\lib\Components\SessionHandler;
 use Tit\lib\Components\CookieHandler;
 
 use Tit\lib\Routing\Router;
+use Tit\lib\Twig\TitTwigExtension;
 
 
 class Tit{
@@ -51,7 +51,7 @@ class Tit{
      * Fill the dependency container with the main class of Tit
      */
     private function initContainer(){
-    // For php7.1 private function initContainer(): void{
+        // For php7.1 private function initContainer(): void{
         $c = $this->app->getContainer();
         $app = $this->app;
 
@@ -87,9 +87,10 @@ class Tit{
             else
                 $twig = new Twig(dirname(__DIR__, 4).$config['template-path'], ['cache' => false]);
 
-            $twig->addExtension(new TwigExtension(
+            $twig->addExtension(new TitTwigExtension(
                 $c->get('router'),
-                $c->get('request')->getUri()
+                $c->get('request')->getUri(),
+                $c
             ));
 
             return $twig;
@@ -132,7 +133,7 @@ class Tit{
      * @param array $dependencyContainer
      */
     private function dependencyContainer(array $dependencyContainer){
-    //private function dependencyContainer(array $dependencyContainer): void{
+        //private function dependencyContainer(array $dependencyContainer): void{
         $c = $this->app->getContainer();
 
         foreach ((array) $dependencyContainer as $name => $class) {
@@ -163,7 +164,7 @@ class Tit{
      * @param array $dependencyContainers
      */
     public function run(array $config, array $routings, array $dependencyContainers){
-    // For php7.1 public function run(): void{
+        // For php7.1 public function run(): void{
 
         $this->init($config, $routings, $dependencyContainers);
         $this->app->run();
