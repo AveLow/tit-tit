@@ -56,7 +56,8 @@ class SessionHandler extends AppComponent{
      */
     public function unset(string $name){
     //For php7.1 public function unset(string $name): void{
-        unset($_SESSION[$name]);
+        if (isset($_SESSION[$name]))
+            unset($_SESSION[$name]);
         return;
     }
 

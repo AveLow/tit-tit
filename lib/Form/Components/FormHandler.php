@@ -26,9 +26,12 @@ abstract class FormHandler extends FormComponent {
      * @return bool
      */
     public function process(){
-        if (!$this->session->get($this->form->name()) ||
+        if ($this->session->get($this->form->name()) == null ||
             $this->session->get($this->form->name()) != $_POST[$this->form->name()]){
-            return false;
+            $this->session->unset($this->form->name());
+        }else{
+            $this->session->unset($this->form->name());
+            return true;
         }
     }
     // For php7.1 abstract public function process(): bool;
