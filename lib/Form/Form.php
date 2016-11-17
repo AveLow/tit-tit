@@ -10,8 +10,6 @@ use Tit\lib\Entity\Hydratable;
  */
 class Form{
 
-    // TODO: ajout de token CSRF
-    // TODO: Nom de formulaire pour pouvoir utiliser render_method
     use Hydratable;
 
     /**
