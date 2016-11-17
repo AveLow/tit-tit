@@ -10,6 +10,8 @@ use Tit\lib\Entity\Hydratable;
  */
 class Form{
 
+    // TODO: ajout de token CSRF
+    // TODO: Nom de formulaire pour pouvoir utiliser render_method
     use Hydratable;
 
     /**
@@ -31,6 +33,12 @@ class Form{
      * @var bool
      */
     protected $isFilled;
+
+    /**
+     * Name of the form.
+     * @var String
+     */
+    protected $name;
 
     /**
      * Form constructor.
@@ -221,5 +229,22 @@ class Form{
     // For php7.1 public function toggleFilled(): Form{
             $this->isFilled = !$this->isFilled;
         return $this;
+    }
+
+    /**
+     * Setter
+     * @param string $name
+     */
+    public function setName(string $name){
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Getter
+     * @return String
+     */
+    public function name(){
+        return $this->name;
     }
 }
